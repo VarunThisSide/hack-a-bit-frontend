@@ -3,47 +3,56 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Geist:wght@100..900&family=Roboto+Slab:wght@100..900&display=swap');
 
+:root {
+  --pulse1-scale: 2.5;
+  --pulse1-width: 300px;
+  --pulse1-height: 300px;
+  --pulse1-time: 3s;
+  --pulse2-scale: 3.8;
+  --pulse2-width: 300px;
+  --pulse2-height: 300px;
+  --pulse2-time: 5s;
+}
+
 *{
   color : white;
 }
 
 body{
-  overflow-x: hidden;
   background-color: black;
 }
 
 .glowing-effect {
   position: absolute;
-  width: 300px;
-  height: 300px;
+  width: var(--pulse1-width);
+  height: var(--pulse1-height);
   background: rgba(0, 255, 255, 0.5);
   border-radius: 50%;
   filter: blur(50px);
-  animation: pulse 3s infinite alternate;
+  animation: pulse1 var(--pulse1-time) infinite alternate;
   overflow: hidden;
   z-index: -10;
 }
 
-@keyframes pulse {
+@keyframes pulse1{
   0% {
     transform: scale(1);
     opacity: 0.6;
   }
   100% {
-    transform: scale(2.5);
+    transform: scale(var(--pulse1-scale));
     opacity: 0.4;
   }
 }
 
 .glowing-effect-2{
   position: absolute;
-  top : 100%;
-  width: 300px;
-  height: 300px;
+  width: var(--pulse2-width);
+  height: var(--pulse2-height);
   background: rgb(61, 26, 109);
   border-radius: 50%;
   filter: blur(50px);
-  animation: pulse-2 5s infinite alternate;
+  animation: pulse-2 var(--pulse2-time) infinite alternate;
   z-index: -10;
 }
 
@@ -53,7 +62,47 @@ body{
     opacity: 1;
   }
   100% {
-    transform: scale(5);
-    opacity: 0.4;
+    transform: scale(var(--pulse2-scale));
+    opacity: 0.6;
+  }
+}
+
+@media (max-width: 1280px) {
+  :root {
+    --pulse2-scale: 3;
+    --pulse2-time: 4s;
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --pulse2-scale: 2.1;
+    --pulse2-time: 3s;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --pulse1-scale: 1.8;
+    --pulse1-width: 250px;
+    --pulse1-height: 250px;
+    --pulse1-time: 2s;
+    --pulse2-scale: 2.2;
+    --pulse2-width: 200px;
+    --pulse2-height: 200px;
+    --pulse2-time: 2s;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --pulse1-scale: 2.2;
+    --pulse1-width: 150px;
+    --pulse1-height: 150px;
+    --pulse1-time: 1.5s;
+    --pulse2-scale: 2.5;
+    --pulse2-width: 150px;
+    --pulse2-height: 150px;
+    --pulse2-time: 1s;
   }
 }
